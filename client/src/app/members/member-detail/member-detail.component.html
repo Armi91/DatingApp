@@ -16,6 +16,9 @@
     </div>
   </div>
   <div class="col-8">
+    <div class="mb-2" *ngIf="(presenceService.onlineUsers$ | async)?.includes(member.userName)">
+      <i class="fa fa-user-circle text-success me-2"></i>Online
+    </div>
     <tabset class="member-tabset" #memberTabs>
       <tab
         heading="About {{ member.knownAs }}"
@@ -44,7 +47,6 @@
       <tab heading="Messages" (selectTab)="onTabActivated($event)">
         <app-member-messages
           [username]="member.userName"
-          [messages]="messages"
         ></app-member-messages>
       </tab>
     </tabset>
